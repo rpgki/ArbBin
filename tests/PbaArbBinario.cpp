@@ -43,12 +43,14 @@ void testBuscar()
 	cnjOrdEnt.insertarOrd(7);
 	cnjOrdEnt.insertarOrd(6);
 	cnjOrdEnt.insertarOrd(1);
+	cnjOrdEnt.insertarOrd(5);
 	cnjOrdEnt.insertarOrd(9);
 	cnjOrdEnt.insertarOrd(2);
 	bool result1 = cnjOrdEnt.buscar(5);
 	bool result2 = cnjOrdEnt.buscar(7);
 	bool result3 = cnjOrdEnt.buscar(6);
 	bool result4 = cnjOrdEnt.buscar(1);
+	bool result8 = cnjOrdEnt.buscar(5);
 	bool result5 = cnjOrdEnt.buscar(9);
 	bool result6 = cnjOrdEnt.buscar(2);
 	bool result7 = cnjOrdEnt.buscar(100);
@@ -72,6 +74,9 @@ void testBuscar()
 	}
 	if (result7 == true) {
 		std::cout << "%TEST_FAILED% time=0 testname=testBuscar (newsimpletest) message=Error en el método Buscar al número 100" << std::endl;
+	}
+	if (result8 == false) {
+		std::cout << "%TEST_FAILED% time=0 testname=testBuscar (newsimpletest) message=Error en el método Buscar al número 5 al ser reinsertado" << std::endl;
 	}
 }
 

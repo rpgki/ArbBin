@@ -49,6 +49,7 @@ void CnjOrdEnt::insertarOrd(int x){
 		while(aux != nullptr){ //Mientras el puntero auxiliar no sea nulo, es decir, mientras se recorra el árbol
 			if(aux->dato == x){ //El dato ya existe
 				aux = nullptr;
+				rsl = 2;
 				cout << "El dato ya existe" << endl;
 			}
 			else {
@@ -68,13 +69,14 @@ void CnjOrdEnt::insertarOrd(int x){
 			aux = ant->hiz; //El auxiliar apunta al hijo de la izquierda
 			ant->hiz = shared_ptr<Ndo> (new Ndo(x)); //Se inserta el dato en el hijo de la izquierda
 			ant->hiz->hiz = aux;
-		} else{
+		} else if(aux == nullptr && rsl == 0){
 			aux = ant->hde; //El auxiliar apunta al hijo de la derecha
 			ant->hde = shared_ptr<Ndo> (new Ndo(x)); //Se inserta el dato en el hijo de la derecha
 			ant->hde->hde = aux;
 		}
 	}
-	cout << "El dato fue ingresado satisfactoriamente" << endl;
+	if(rsl != 2)
+		cout << "El dato fue ingresado satisfactoriamente" << endl;
 }
 
 bool CnjOrdEnt::eliminar(int x){    
