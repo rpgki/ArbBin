@@ -11,6 +11,23 @@ CnjOrdEnt::CnjOrdEnt():raiz(nullptr) {
 }
 
 CnjOrdEnt::CnjOrdEnt(const CnjOrdEnt& orig) {
+	shared_ptr<Ndo> p = orig.raiz;
+	shared_ptr<Ndo> copHiz = this->copiador(p->hiz);
+	shared_ptr<Ndo> copHde = this->copiador(p->hde);
+}
+
+shared_ptr<CnjOrdEnt::Ndo> CnjOrdEnt::copiador(shared_ptr<Ndo> p) {
+	shared_ptr<Ndo> aux;
+	if(p != nullptr){
+		aux = shared_ptr<Ndo> (new Ndo(p->dato));
+		if(aux->hiz != nullptr){
+			aux->hiz = copiador(aux->hiz);
+		}
+		if(aux->hde != nullptr){
+			aux->hde = copiador(aux->hde);
+		}
+	}
+	return aux;
 }
 
 CnjOrdEnt::~CnjOrdEnt() {
@@ -68,11 +85,9 @@ void CnjOrdEnt::insertarOrd(int x){
 		if(aux == nullptr && rsl == 1){ //Si el dato será insertado en el hijo de la izquierda
 			aux = ant->hiz; //El auxiliar apunta al hijo de la izquierda
 			ant->hiz = shared_ptr<Ndo> (new Ndo(x)); //Se inserta el dato en el hijo de la izquierda
-			ant->hiz->hiz = aux;
 		} else if(aux == nullptr && rsl == 0){
 			aux = ant->hde; //El auxiliar apunta al hijo de la derecha
 			ant->hde = shared_ptr<Ndo> (new Ndo(x)); //Se inserta el dato en el hijo de la derecha
-			ant->hde->hde = aux;
 		}
 	}
 	if(rsl != 2)

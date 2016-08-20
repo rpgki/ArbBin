@@ -32,6 +32,7 @@ private:
         shared_ptr<Ndo> hiz;
         shared_ptr<Ndo> hde;
     };
+    shared_ptr<Ndo> copiador(shared_ptr<Ndo> p);
     shared_ptr<Ndo> raiz;
 };
 

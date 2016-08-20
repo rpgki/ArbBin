@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
 	a.insertarOrd(9);
 	a.insertarOrd(2);
 	
-	if(a.buscar(100) == true)
+	if(a.buscar(5) == true)
 		cout << "Si lo encontro" << endl;
 	else
 		cout << "No lo encontro" << endl;
