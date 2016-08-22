@@ -26,6 +26,8 @@ int main(int argc, char** argv) {
 		cout << "Si lo encontro" << endl;
 	else
 		cout << "No lo encontro" << endl;
+	
+	cout << "Prueba Ahil" << a.aHil() << endl;
 return 0;
 }
 

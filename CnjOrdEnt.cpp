@@ -94,5 +94,62 @@ void CnjOrdEnt::insertarOrd(int x){
 		cout << "El dato fue ingresado satisfactoriamente" << endl;
 }
 
+bool CnjOrdEnt::sinHijo(int x)
+{
+	bool rsl = false;
+	shared_ptr<Ndo> p = raiz;
+	while (p != nullptr) {
+		if (p->dato == x && p->hde == nullptr && p->hiz == nullptr) {
+			p = nullptr;
+			rsl = true;
+			return rsl;
+		}
+		if (x < p->dato)
+			p = p->hiz;
+	}
+}
+
+bool CnjOrdEnt::unHijo(int x)
+{
+
+}
+
+bool CnjOrdEnt::dosHjos(int x)
+{
+
+}
+
 bool CnjOrdEnt::eliminar(int x){    
 }
+
+string CnjOrdEnt::recorrido(shared_ptr<Ndo> p)
+{
+	stringstream fs;
+	fs << p->dato;
+	if(p->hiz != nullptr){
+		fs << p->hiz->dato;
+		recorrido(p->hiz);
+	}
+	if(p->hde != nullptr){
+		fs << p->hde->dato;
+		recorrido(p->hde);
+	}
+	return fs.str();
+}
+
+string CnjOrdEnt::aHil()
+{
+	stringstream fs;
+	shared_ptr<Ndo> p = raiz;
+	fs << '{';
+	if(p->hiz != nullptr){
+		fs << recorrido(p->hiz);
+	}
+	fs << this->raiz->dato;
+	if(p->hde != nullptr){
+		fs << recorrido(p->hde);
+	}
+	fs << '}';
+	return fs.str();
+}
+
