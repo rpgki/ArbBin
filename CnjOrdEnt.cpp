@@ -96,22 +96,67 @@ void CnjOrdEnt::insertarOrd(int x){
 
 bool CnjOrdEnt::sinHijo(int x)
 {
-	bool rsl = false;
-	shared_ptr<Ndo> p = raiz;
-	while (p != nullptr) {
-		if (p->dato == x && p->hde == nullptr && p->hiz == nullptr) {
-			p = nullptr;
-			rsl = true;
-			return rsl;
+	bool rsl = false; int aux2;
+	shared_ptr<Ndo> aux = raiz;
+	shared_ptr<Ndo> ant = nullptr;
+	while (aux != nullptr && rsl == false) {
+	        if (aux->dato == x && aux->hde == nullptr && aux->hiz == nullptr) {
+			if(aux2 == 0){
+				aux = nullptr;
+				ant->hiz = nullptr;
+				rsl = true;
+			}
+			else if(aux2 == 1){
+				aux = nullptr;
+				ant->hde = nullptr;
+				rsl = true;
+			}
+		} 
+		else if (x < aux->dato){
+			ant = aux;
+			aux = aux->hiz;
+			aux2 = 0;
 		}
-		if (x < p->dato)
-			p = p->hiz;
+		else if (x > aux->dato){
+			ant = aux;
+			aux = aux->hde;
+			aux2 = 1;
+		}	
 	}
+	return rsl;
 }
 
 bool CnjOrdEnt::unHijo(int x)
 {
-
+	bool rsl = false;
+	int aux2;
+	shared_ptr<Ndo> aux = raiz;
+	shared_ptr<Ndo> ant = nullptr;
+	while (aux != nullptr && rsl == false) {
+		if (aux->dato == x && (aux->hde == nullptr || aux->hiz == nullptr)) {
+			if (aux2 == 0) {
+				ant->hiz = nullptr;
+				ant->hiz->dato = aux->hiz->dato;
+				aux = nullptr;
+				rsl = true;
+			} else if (aux2 == 1) {
+				ant->hde = nullptr;
+				ant->hde->dato = aux->hde->dato;
+				aux = nullptr;
+				rsl = true;
+			}
+		}
+		else if (x < aux->dato) {
+			ant = aux;
+			aux = aux->hiz;
+			aux2 = 0;
+		} else if (x > aux->dato) {
+			ant = aux;
+			aux = aux->hde;
+			aux2 = 1;
+		}
+	}
+	return rsl;
 }
 
 bool CnjOrdEnt::dosHjos(int x)
@@ -119,22 +164,27 @@ bool CnjOrdEnt::dosHjos(int x)
 
 }
 
-bool CnjOrdEnt::eliminar(int x){    
+bool CnjOrdEnt::eliminar(int x){
+	bool rsl;
+	if(sinHijo(x) || unHijo(x))
+		rsl = true;
+	return rsl;
 }
 
 string CnjOrdEnt::recorrido(shared_ptr<Ndo> p)
 {
+	//EFE:: RECURSIVIDAD DENTRO DE LA MISMA FUNCION SE USA EL RESULTADO DE ELLA MISMA
 	stringstream fs;
-	fs << p->dato;
-	if(p->hiz != nullptr){
-		fs << p->hiz->dato;
-		recorrido(p->hiz);
+	string hil;
+	fs << p->dato << ',';
+	if (p->hiz != nullptr) {
+		fs << recorrido(p->hiz);
 	}
-	if(p->hde != nullptr){
-		fs << p->hde->dato;
-		recorrido(p->hde);
+	if (p->hde != nullptr) {
+		fs << recorrido(p->hde);
 	}
-	return fs.str();
+	fs >> hil;
+	return hil;
 }
 
 string CnjOrdEnt::aHil()
@@ -145,7 +195,7 @@ string CnjOrdEnt::aHil()
 	if(p->hiz != nullptr){
 		fs << recorrido(p->hiz);
 	}
-	fs << this->raiz->dato;
+	fs << this->raiz->dato << ',';
 	if(p->hde != nullptr){
 		fs << recorrido(p->hde);
 	}

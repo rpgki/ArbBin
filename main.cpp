@@ -17,17 +17,24 @@ int main(int argc, char** argv) {
 	a.insertarOrd(5); 
 	a.insertarOrd(7); 
 	a.insertarOrd(6);
-	a.insertarOrd(1);
+	a.insertarOrd(2);
 	a.insertarOrd(5);
 	a.insertarOrd(9);
-	a.insertarOrd(2);
+	a.insertarOrd(1);
+	a.insertarOrd(10);
+	a.insertarOrd(3);
+	a.insertarOrd(4);
+	a.insertarOrd(11);
 	
-	if(a.buscar(5) == true)
+	if(a.buscar(3) == true)
 		cout << "Si lo encontro" << endl;
 	else
 		cout << "No lo encontro" << endl;
-	
-	cout << "Prueba Ahil" << a.aHil() << endl;
+	string pba = a.aHil();
+	cout << pba << endl;
+	a.eliminar(3);
+	cout << a.aHil() << endl;
+
 return 0;
 }
 
