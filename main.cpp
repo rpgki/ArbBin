@@ -32,7 +32,7 @@ int main(int argc, char** argv) {
 		cout << "No lo encontro" << endl;
 	string pba = a.aHil();
 	cout << pba << endl;
-	a.eliminar(3);
+	a.eliminar(5);
 	cout << a.aHil() << endl;
 
 return 0;

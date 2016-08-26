@@ -96,55 +96,24 @@ void CnjOrdEnt::insertarOrd(int x){
 
 bool CnjOrdEnt::sinHijo(int x)
 {
-	bool rsl = false; int aux2;
-	shared_ptr<Ndo> aux = raiz;
-	shared_ptr<Ndo> ant = nullptr;
-	while (aux != nullptr && rsl == false) {
-	        if (aux->dato == x && aux->hde == nullptr && aux->hiz == nullptr) {
-			if(aux2 == 0){
-				aux = nullptr;
-				ant->hiz = nullptr;
-				rsl = true;
-			}
-			else if(aux2 == 1){
-				aux = nullptr;
-				ant->hde = nullptr;
-				rsl = true;
-			}
-		} 
-		else if (x < aux->dato){
-			ant = aux;
-			aux = aux->hiz;
-			aux2 = 0;
-		}
-		else if (x > aux->dato){
-			ant = aux;
-			aux = aux->hde;
-			aux2 = 1;
-		}	
-	}
-	return rsl;
-}
-
-bool CnjOrdEnt::unHijo(int x)
-{
 	bool rsl = false;
 	int aux2;
 	shared_ptr<Ndo> aux = raiz;
 	shared_ptr<Ndo> ant = nullptr;
-	while (aux != nullptr && rsl == false) {
-		if (aux->dato == x && (aux->hde == nullptr || aux->hiz == nullptr)) {
-			if (aux2 == 0) {
-				ant->hiz = nullptr;
-				ant->hiz->dato = aux->hiz->dato;
+	while (aux != nullptr) {
+		if (aux->dato == x) {
+			if (aux->hde == nullptr && aux->hiz == nullptr) {
+				if (aux2 == 0) {
+					aux = nullptr;
+					ant->hiz = nullptr;
+					rsl = true;
+				} else if (aux2 == 1) {
+					aux = nullptr;
+					ant->hde = nullptr;
+					rsl = true;
+				}
+			} else
 				aux = nullptr;
-				rsl = true;
-			} else if (aux2 == 1) {
-				ant->hde = nullptr;
-				ant->hde->dato = aux->hde->dato;
-				aux = nullptr;
-				rsl = true;
-			}
 		}
 		else if (x < aux->dato) {
 			ant = aux;
@@ -159,14 +128,78 @@ bool CnjOrdEnt::unHijo(int x)
 	return rsl;
 }
 
+bool CnjOrdEnt::unHijo(int x)
+{
+	bool rsl = false;
+	int aux2;
+	shared_ptr<Ndo> aux = raiz;
+	shared_ptr<Ndo> ant = nullptr;
+	while (aux != nullptr) {
+		if (aux->dato == x) {
+			if (aux->hde == nullptr || aux->hiz == nullptr) {
+				if (aux2 == 0) {
+					ant->hiz = aux->hiz;
+					aux = nullptr;
+					rsl = true;
+				} else if (aux2 == 1) {
+					ant->hde = aux->hde;
+					aux = nullptr;
+					rsl = true;
+				}
+			} else
+				aux = nullptr;
+		} else if (x < aux->dato) {
+			ant = aux;
+			aux = aux->hiz;
+			aux2 = 0;
+		} else if (x > aux->dato) {
+			ant = aux;
+			aux = aux->hde;
+			aux2 = 1;
+		}
+	}
+	return rsl;
+}
+
 bool CnjOrdEnt::dosHjos(int x)
 {
-
+	bool rsl = false; int dto_nvo;
+	shared_ptr<Ndo> p = raiz;
+	shared_ptr<Ndo> aux = nullptr;
+	shared_ptr<Ndo> ant = nullptr;
+	if(raiz->dato == x){
+		dto_nvo = raiz->hiz->dato;
+		p = raiz->hiz;
+		rsl = true;
+		while(p != nullptr){
+			if(p->hde->dato > dto_nvo){
+				dto_nvo = p->hde->dato;
+				raiz->dato = dto_nvo;
+				ant = p;
+				p = p->hde;
+			}else{
+				ant = p;
+				p = p->hde;
+			}
+			if(p->hde == nullptr && p->hiz == nullptr){
+				ant->hde = nullptr;
+				p = p->hde;
+			}
+		}
+	}
+	else {
+		
+	}
+	return rsl;
 }
 
 bool CnjOrdEnt::eliminar(int x){
 	bool rsl;
-	if(sinHijo(x) || unHijo(x))
+	if(sinHijo(x))
+		rsl = true;
+	else if (unHijo(x))
+		rsl = true;
+	else if (dosHjos(x))
 		rsl = true;
 	return rsl;
 }
