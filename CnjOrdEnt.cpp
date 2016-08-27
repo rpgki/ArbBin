@@ -188,7 +188,39 @@ bool CnjOrdEnt::dosHjos(int x)
 		}
 	}
 	else {
-		
+		while(rsl != true){
+			if(p->dato == x){
+				dto_nvo = p->hiz->dato;
+				aux = p->hiz;
+				rsl = true;
+				while(aux != nullptr){
+					if(aux->hde == nullptr){
+						p->dato = aux->dato;
+						p->hiz = nullptr;
+						p->hiz = aux->hiz;
+						aux == nullptr;
+						break;
+					}
+					else if(aux->hde->dato > dto_nvo){
+						dto_nvo = aux->hde->dato;
+						p->dato = dto_nvo;
+						ant = aux;
+						aux = aux->hde;
+					}else{
+						ant = aux;
+						aux = aux->hde;			
+					}
+					if(aux->hde == nullptr && aux->hiz == nullptr){
+						ant->hde = nullptr;
+						aux = aux->hde;
+					}
+				}
+			}
+			else if(x < p->dato)
+				p = p->hiz;
+			else if(x > p->dato)
+				p = p->hde;
+		}
 	}
 	return rsl;
 }

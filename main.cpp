@@ -26,13 +26,13 @@ int main(int argc, char** argv) {
 	a.insertarOrd(4);
 	a.insertarOrd(11);
 	
-	if(a.buscar(3) == true)
+	if(a.buscar(22) == true)
 		cout << "Si lo encontro" << endl;
 	else
 		cout << "No lo encontro" << endl;
 	string pba = a.aHil();
 	cout << pba << endl;
-	a.eliminar(5);
+	a.eliminar(2);
 	cout << a.aHil() << endl;
 
 return 0;
