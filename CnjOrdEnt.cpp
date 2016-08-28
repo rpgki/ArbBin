@@ -257,14 +257,18 @@ string CnjOrdEnt::aHil()
 	stringstream fs;
 	shared_ptr<Ndo> p = raiz;
 	fs << '{';
-	if(p->hiz != nullptr){
-		fs << recorrido(p->hiz);
+	if (p == nullptr)
+		fs << '}';
+	else {
+		if (p->hiz != nullptr) {
+			fs << recorrido(p->hiz);
+		}
+		fs << this->raiz->dato << ',';
+		if (p->hde != nullptr) {
+			fs << recorrido(p->hde);
+		}
+		fs << '}';
 	}
-	fs << this->raiz->dato << ',';
-	if(p->hde != nullptr){
-		fs << recorrido(p->hde);
-	}
-	fs << '}';
 	return fs.str();
 }
 
