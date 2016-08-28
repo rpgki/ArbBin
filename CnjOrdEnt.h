@@ -30,7 +30,7 @@ private:
     struct Ndo{
     public:
         Ndo(int x):dato(x),hiz(nullptr),hde(nullptr){};
-        ~Ndo(){cout << "borrando: " << dato << endl;};
+        ~Ndo(){/*cout << "borrando: " << dato << endl;*/};
         int dato;
         shared_ptr<Ndo> hiz;
         shared_ptr<Ndo> hde;

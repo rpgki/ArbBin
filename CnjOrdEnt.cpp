@@ -12,8 +12,14 @@ CnjOrdEnt::CnjOrdEnt():raiz(nullptr) {
 
 CnjOrdEnt::CnjOrdEnt(const CnjOrdEnt& orig) {
 	shared_ptr<Ndo> p = orig.raiz;
-	shared_ptr<Ndo> copHiz = this->copiador(p->hiz);
-	shared_ptr<Ndo> copHde = this->copiador(p->hde);
+	if(p == nullptr)
+		raiz = nullptr;
+	else{
+		shared_ptr<Ndo> copHiz = this->copiador(p->hiz);
+		shared_ptr<Ndo> copHde = this->copiador(p->hde);
+		p->hiz = copHiz;
+		p->hde = copHde;
+	}
 }
 
 shared_ptr<CnjOrdEnt::Ndo> CnjOrdEnt::copiador(shared_ptr<Ndo> p) {

@@ -28,15 +28,15 @@ void testCnjOrdEnt()
 	}
 }
 
-//void testCnjOrdEnt2()
-//{
-//	CnjOrdEnt orig;
-//	CnjOrdEnt cnjOrdEnt(orig);
-//	string h = cnjOrdEnt.aHil();
-//	if (h != "{}") {
-//		std::cout << "%TEST_FAILED% time=0 testname=testCnjOrdEnt2 (newsimpletest) el constructor de copias o el metodo ahil fallo" << std::endl;
-//	}
-//}
+void testCnjOrdEnt2()
+{
+	CnjOrdEnt orig;
+	CnjOrdEnt cnjOrdEnt(orig);
+	string h = cnjOrdEnt.aHil();
+	if (h != "{}") {
+		std::cout << "%TEST_FAILED% time=0 testname=testCnjOrdEnt2 (newsimpletest) el constructor de copias o el metodo ahil fallo" << std::endl;
+	}
+}
 
 void testBuscar()
 {
@@ -162,9 +162,9 @@ int main(int argc, char** argv)
 	testCnjOrdEnt();
 	std::cout << "%TEST_FINISHED% time=0 testCnjOrdEnt (newsimpletest)" << std::endl;
 
-//	std::cout << "%TEST_STARTED% testCnjOrdEnt2 (newsimpletest)" << std::endl;
-//	testCnjOrdEnt2();
-//	std::cout << "%TEST_FINISHED% time=0 testCnjOrdEnt2 (newsimpletest)" << std::endl;
+	std::cout << "%TEST_STARTED% testCnjOrdEnt2 (newsimpletest)" << std::endl;
+	testCnjOrdEnt2();
+	std::cout << "%TEST_FINISHED% time=0 testCnjOrdEnt2 (newsimpletest)" << std::endl;
 
 	std::cout << "%TEST_STARTED% testBuscar (newsimpletest)" << std::endl;
 	testBuscar();
