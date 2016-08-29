@@ -258,6 +258,13 @@ string CnjOrdEnt::recorrido(shared_ptr<Ndo> p)
 	return hil;
 }
 
+int CnjOrdEnt::obtRaiz()
+{
+	int raz = raiz->dato;
+	return raz;
+}
+
+
 string CnjOrdEnt::aHil()
 {
 	stringstream fs;

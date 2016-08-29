@@ -30,13 +30,7 @@ int main(int argc, char** argv) {
 		cout << "Inserte un numero entero: ";
 		cin >> num; 
 		cout << endl;
-		if(arbBin.aHil() == "{}"){
-			raiz = num;
 			arbBin.insertarOrd(num);
-		}
-		else{
-			arbBin.insertarOrd(num);
-		}
 		break;	    
 	case 2:
 		cout << "Inserte un numero entero: ";
@@ -56,7 +50,7 @@ int main(int argc, char** argv) {
 	case 4:
 		cout << arbBin.aHil() << endl;
 		if(arbBin.aHil() != "{}")
-			cout << "La raíz del árbol es: " << raiz << endl;
+			cout << "La raíz del árbol es: " << arbBin.obtRaiz() << endl;
 		else
 			cout << "El árbol no tiene contenido, favor inserte uno" << endl;
 		break;

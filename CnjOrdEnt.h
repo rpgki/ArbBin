@@ -24,6 +24,7 @@ public:
     void insertarOrd(int x);
     bool eliminar(int x);
     string aHil();
+    int obtRaiz();
     
 private:
     
