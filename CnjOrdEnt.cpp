@@ -15,10 +15,13 @@ CnjOrdEnt::CnjOrdEnt(const CnjOrdEnt& orig) {
 	if(p == nullptr)
 		raiz = nullptr;
 	else{
-		shared_ptr<Ndo> copHiz = this->copiador(p->hiz);
-		shared_ptr<Ndo> copHde = this->copiador(p->hde);
-		p->hiz = copHiz;
-		p->hde = copHde;
+		raiz = shared_ptr<Ndo> (new Ndo(p->dato));
+		raiz->hde = p->hde;
+		raiz->hiz = p->hiz;
+		//shared_ptr<Ndo> copHiz = this->copiador(p->hiz);
+		//shared_ptr<Ndo> copHde = this->copiador(p->hde);
+		//p->hiz = copHiz;
+		//p->hde = copHde;
 	}
 }
 

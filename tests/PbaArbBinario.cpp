@@ -23,6 +23,7 @@ void testCnjOrdEnt()
 {
 	CnjOrdEnt cnjOrdEnt;
 	string h = cnjOrdEnt.aHil();
+	
 	if (h != "{}") {
 		std::cout << "%TEST_FAILED% time=0 testname=testCnjOrdEnt (newsimpletest) el constructor estandar o el metodo ahil fallo" << std::endl;
 	}
@@ -30,10 +31,26 @@ void testCnjOrdEnt()
 
 void testCnjOrdEnt2()
 {
-	CnjOrdEnt orig;
+	CnjOrdEnt orig; CnjOrdEnt orig2;
+	orig2.insertarOrd(5);
+	orig2.insertarOrd(7);
+	orig2.insertarOrd(6);
+	orig2.insertarOrd(2);
+	orig2.insertarOrd(1);
+	orig2.insertarOrd(5);
+	orig2.insertarOrd(9);
+	orig2.insertarOrd(3);
+	orig2.insertarOrd(4);
+	orig2.insertarOrd(10);
+	orig2.insertarOrd(11);
 	CnjOrdEnt cnjOrdEnt(orig);
+	CnjOrdEnt cnjOrdEnt2(orig2);
 	string h = cnjOrdEnt.aHil();
+	string h2 = cnjOrdEnt2.aHil(); 
 	if (h != "{}") {
+		std::cout << "%TEST_FAILED% time=0 testname=testCnjOrdEnt2 (newsimpletest) el constructor de copias o el metodo ahil fallo" << std::endl;
+	}
+	if (h2 != "{2,1,3,4,5,7,6,9,10,11,}") {
 		std::cout << "%TEST_FAILED% time=0 testname=testCnjOrdEnt2 (newsimpletest) el constructor de copias o el metodo ahil fallo" << std::endl;
 	}
 }
